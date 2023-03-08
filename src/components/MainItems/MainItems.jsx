@@ -3,6 +3,7 @@ import Modals from "../Modals/Modals";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addTravelToCart } from "../../redux-toolkit/productSlice";
+import { Box } from "@chakra-ui/react";
 
 const ProductItems = ({ items }) => {
   const { idx, name, mainImage, price, spaceCategory } = items;
@@ -13,7 +14,7 @@ const ProductItems = ({ items }) => {
   };
 
   return (
-    <section>
+    <Box>
       <div>
         <h1>{idx}</h1>
         <h1>{name}</h1>
@@ -28,7 +29,7 @@ const ProductItems = ({ items }) => {
           <Modals />
         </Link>
       </div>
-    </section>
+    </Box>
   );
 };
 

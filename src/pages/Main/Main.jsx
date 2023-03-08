@@ -2,11 +2,14 @@ import React, { useEffect } from "react";
 import MainItems from "../../components/MainItems/MainItems";
 import { useDispatch, useSelector } from "react-redux";
 import { API_URL } from "../../constants/constants";
-import { fetchTravelData } from "../../redux-toolkit/productSlice";
+import { fetchTravelData, resetValue } from "../../redux-toolkit/productSlice";
 import { Box } from "@chakra-ui/react";
 
 const Main = () => {
-  const travelData = useSelector((state) => state.product.products);
+  const { products, sortedProducts, price, regions } = useSelector(
+    (state) => state.product
+  );
+  const items = sortedProducts.length === 0 ? products : sortedProducts;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,6 +21,13 @@ const Main = () => {
     getDatas();
   }, []);
 
+  useEffect(() => {
+    if (price !== "all" && regions !== "all") {
+      alert("존재하지 않는 상품입니다.");
+      dispatch(resetValue());
+    }
+  }, [sortedProducts.length === 0]);
+
   return (
     <Box
       display="flex"
@@ -25,9 +35,8 @@ const Main = () => {
       justifyContent="center"
       alignItems="center"
       gap="2rem"
-      my="5%"
     >
-      {travelData.map((items) => (
+      {items?.map((items) => (
         <MainItems key={items.idx} items={items} />
       ))}
     </Box>

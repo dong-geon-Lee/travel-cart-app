@@ -27,7 +27,7 @@ const Modals = () => {
     price,
     maximumPurchases,
     registrationDate,
-  } = state || [];
+  } = state;
 
   return (
     <>
