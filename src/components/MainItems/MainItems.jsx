@@ -3,6 +3,7 @@ import Modals from "../Modals/Modals";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addTravelToCart } from "../../redux-toolkit/productSlice";
+import { checkReservationItems, formattedNumber } from "../../utils/utils";
 import {
   Box,
   Button,
@@ -13,7 +14,6 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
-import { checkReservationItems, formattedNumber } from "../../utils/utils";
 
 const ProductItems = ({ items }) => {
   const [disabled, setDisabled] = useState(false);

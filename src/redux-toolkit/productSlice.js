@@ -74,7 +74,6 @@ export const productSlice = createSlice({
       state.carts = state.carts.map((cart) => {
         if (cart.idx === idx) {
           cart.qty = num + cart.qty || 1;
-          console.log(price, cart.qty, "아오...");
           cart.price = price * cart.qty;
         }
         return { ...cart };

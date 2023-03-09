@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { travelData } from "../../data/data";
 import { Link } from "react-router-dom";
+import { formattedNumber } from "../../utils/utils";
 import arrow from "../../assets/arrow.svg";
 import {
   Box,
@@ -17,12 +18,9 @@ import {
   increaseQty,
   removeCartItems,
 } from "../../redux-toolkit/productSlice";
-import { formattedNumber } from "../../utils/utils";
 
 const Reservations = () => {
   const cartItems = useSelector((state) => state.product.carts);
-  console.log(cartItems, "?");
-
   const dispatch = useDispatch();
 
   const handlePlusCartQty = (idx, num, price) => {
@@ -38,7 +36,6 @@ const Reservations = () => {
   };
 
   let total = cartItems.reduce((acc, cur) => acc + cur.price, 0);
-  console.log(total);
 
   return (
     <Box p="10">

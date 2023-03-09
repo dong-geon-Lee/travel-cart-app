@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import cart from "../../assets/cart.svg";
-import { Box, Button, Image, Select, Tooltip } from "@chakra-ui/react";
+import { Box, Button, Image, Select, Tooltip, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -10,7 +10,10 @@ import {
 } from "../../redux-toolkit/productSlice";
 
 const Header = () => {
-  const { products, price, regions } = useSelector((state) => state.product);
+  const { products, price, regions, carts } = useSelector(
+    (state) => state.product
+  );
+
   const dispatch = useDispatch();
 
   const handlePriceOnChange = (e) => {
@@ -75,7 +78,10 @@ const Header = () => {
           </Select>
         </Tooltip>
       </Box>
-      <Link to="/reservations" style={{ marginRight: "2rem" }}>
+      <Link
+        to="/reservations"
+        style={{ marginRight: "2rem", position: "relative" }}
+      >
         <Tooltip hasArrow label="장바구니" bg="green.400" p="3">
           <Button
             backgroundColor="transparent"
@@ -83,6 +89,17 @@ const Header = () => {
             colorScheme="white"
           >
             <Image src={cart} alt="cart" w="10" h="10" />
+            <Box position="absolute" top="-24%" right="52%">
+              <Text
+                color="red.300"
+                fontSize="2xl"
+                padding="1"
+                borderRadius="50%"
+                backgroundColor="blue.200"
+              >
+                {carts.length || 0}
+              </Text>
+            </Box>
           </Button>
         </Tooltip>
       </Link>
