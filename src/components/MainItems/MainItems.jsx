@@ -13,7 +13,7 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
-import { checkReservationItems } from "../../utils/utils";
+import { checkReservationItems, formattedNumber } from "../../utils/utils";
 
 const ProductItems = ({ items }) => {
   const [disabled, setDisabled] = useState(false);
@@ -45,7 +45,7 @@ const ProductItems = ({ items }) => {
             가격
           </FormLabel>
           <Text color="blue.600" fontSize="2xl" textAlign="center" w="100%">
-            {price}
+            {formattedNumber(price) + " 원"}
           </Text>
         </GridItem>
         <GridItem w="100%" h="100%">

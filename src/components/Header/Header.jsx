@@ -38,7 +38,7 @@ const Header = () => {
           <Select
             value={price}
             onChange={handlePriceOnChange}
-            bgGradient="linear(to-l, #f95167, #edffa3)"
+            bgGradient="linear(to-l, #fffeff, #bdc2d7)"
             border="1px solid #000"
             cursor="pointer"
           >
@@ -52,7 +52,7 @@ const Header = () => {
           <Select
             value={regions}
             onChange={handleRegionOnChange}
-            bgGradient="linear(to-l, #f95167, #edffa3)"
+            bgGradient="linear(to-l, #fffeff, #bdc2d7)"
             border="1px solid #000"
             cursor="pointer"
           >
@@ -76,7 +76,7 @@ const Header = () => {
         </Tooltip>
       </Box>
       <Link to="/reservations" style={{ marginRight: "2rem" }}>
-        <Tooltip hasArrow label="장바구니" bg="green.400" p="4" fontSize="md">
+        <Tooltip hasArrow label="장바구니" bg="green.400" p="3">
           <Button
             backgroundColor="transparent"
             variant="solid"

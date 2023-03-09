@@ -7,6 +7,7 @@ const initialState = {
   carts: [],
   price: "all",
   regions: "all",
+  quantity: 1,
 };
 
 export const productSlice = createSlice({
@@ -64,8 +65,30 @@ export const productSlice = createSlice({
         return;
       }
     },
-    cartReset: (state) => {
-      state.products = [];
+    removeCartItems: (state, action) => {
+      const idx = action.payload;
+      state.carts = state.carts.filter((cart) => cart.idx !== idx);
+    },
+    increaseQty: (state, action) => {
+      const { idx, num, price } = action.payload;
+      state.carts = state.carts.map((cart) => {
+        if (cart.idx === idx) {
+          cart.qty = num + cart.qty || 1;
+          console.log(price, cart.qty, "아오...");
+          cart.price = price * cart.qty;
+        }
+        return { ...cart };
+      });
+    },
+    decreaseQty: (state, action) => {
+      const { idx, num, price } = action.payload;
+      state.carts = state.carts.map((cart) => {
+        if (cart.idx === idx) {
+          cart.qty = cart.qty - num;
+          cart.price = price * cart.qty;
+        }
+        return { ...cart };
+      });
     },
   },
 });
@@ -77,7 +100,9 @@ export const {
   fetchTravelData,
   addTravelToCart,
   updateTravelData,
-  cartReset,
+  removeCartItems,
+  increaseQty,
+  decreaseQty,
 } = productSlice.actions;
 
 export default productSlice.reducer;
