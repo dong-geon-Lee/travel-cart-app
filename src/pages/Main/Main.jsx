@@ -34,7 +34,8 @@ const Main = () => {
       flexWrap="wrap"
       justifyContent="center"
       alignItems="center"
-      gap="2rem"
+      gap="3.6rem"
+      p="20"
     >
       {items?.map((items) => (
         <MainItems key={items.idx} items={items} />

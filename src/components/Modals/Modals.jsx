@@ -27,11 +27,18 @@ const Modals = () => {
     price,
     maximumPurchases,
     registrationDate,
-  } = state;
+  } = state || [];
 
   return (
     <>
-      <Button onClick={onOpen}>자세히보기</Button>
+      <Button
+        onClick={onOpen}
+        colorScheme="whatsapp"
+        overflow="hidden"
+        width="100%"
+      >
+        자세히보기
+      </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

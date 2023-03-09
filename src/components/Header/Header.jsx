@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import cart from "../../assets/cart.svg";
 import { Box, Button, Image, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   priceValue,
   regionsValue,
@@ -25,15 +26,33 @@ const Header = () => {
   }, [price, regions]);
 
   return (
-    <Box display="flex" justifyContent="space-between" mx="3%">
+    <Box
+      display="flex"
+      justifyContent="space-between"
+      py="10"
+      px="5"
+      bg="beige"
+    >
       <Box display="flex" alignItems="center" gap="4">
-        <Select value={price} onChange={handlePriceOnChange}>
+        <Select
+          value={price}
+          onChange={handlePriceOnChange}
+          bgGradient="linear(to-l, #f95167, #edffa3)"
+          border="1px solid #000"
+          cursor="pointer"
+        >
           <option value="all">전체</option>
           <option value="lowPrice">0원 초과 ~ 10000원 이하</option>
           <option value="middlePrice">10000원 초과 ~ 15000 이하</option>
           <option value="highPrice">15000원 초과 ~ 30000원 이하</option>
         </Select>
-        <Select value={regions} onChange={handleRegionOnChange}>
+        <Select
+          value={regions}
+          onChange={handleRegionOnChange}
+          bgGradient="linear(to-l, #f95167, #edffa3)"
+          border="1px solid #000"
+          cursor="pointer"
+        >
           <option value="all">전체</option>
           <option value="서울" name="seoul">
             서울
@@ -52,7 +71,7 @@ const Header = () => {
           </option>
         </Select>
       </Box>
-      <Box display="flex" justifyContent="right" padding="8">
+      <Link to="/reservations" style={{ marginRight: "2rem" }}>
         <Button
           backgroundColor="transparent"
           variant="solid"
@@ -60,7 +79,7 @@ const Header = () => {
         >
           <Image src={cart} alt="cart" w="10" h="10" />
         </Button>
-      </Box>
+      </Link>
     </Box>
   );
 };
