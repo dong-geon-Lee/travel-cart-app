@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Modals from "../Modals/Modals";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addTravelToCart } from "../../redux-toolkit/productSlice";
 import {
@@ -11,14 +11,20 @@ import {
   GridItem,
   Image,
   Text,
+  useToast,
 } from "@chakra-ui/react";
+import { checkReservationItems } from "../../utils/utils";
 
 const ProductItems = ({ items }) => {
+  const [disabled, setDisabled] = useState(false);
   const { idx, name, mainImage, price, spaceCategory } = items;
+  const toast = useToast();
+  const cartItems = useSelector((state) => state.product.carts);
   const dispatch = useDispatch();
 
   const handleReservations = () => {
     dispatch(addTravelToCart({ ...items }));
+    setDisabled(true);
   };
 
   return (
@@ -52,12 +58,25 @@ const ProductItems = ({ items }) => {
         </GridItem>
       </Grid>
 
-      <Box display="flex" gap="3" p="3.5">
+      <Box display="flex" gap="3" p="3.5" alignItems="center">
         <Button
-          onClick={() => handleReservations()}
+          onClick={() => {
+            handleReservations();
+            toast({
+              title: name,
+              description: "예약이 완료되었습니다!",
+              status: "success",
+              duration: 3000,
+              isClosable: true,
+            });
+          }}
           width="100%"
           flex="1"
           colorScheme="messenger"
+          isDisabled={disabled || checkReservationItems(cartItems, name)}
+          display="flex"
+          alignItems="center"
+          py="6"
         >
           예약하기
         </Button>

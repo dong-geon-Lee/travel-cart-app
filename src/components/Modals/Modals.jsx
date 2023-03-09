@@ -36,17 +36,25 @@ const Modals = () => {
         colorScheme="whatsapp"
         overflow="hidden"
         width="100%"
+        display="flex"
+        alignItems="center"
+        py="6"
       >
         자세히보기
       </Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size="lg">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>
+          <ModalHeader borderBottom="1px solid #000">
             #{idx} - {name}
           </ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
+          <ModalBody
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            mt="4"
+          >
             <Box
               maxW="sm"
               borderWidth="1px"

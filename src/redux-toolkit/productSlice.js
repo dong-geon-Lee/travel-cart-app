@@ -34,7 +34,6 @@ export const productSlice = createSlice({
       const minNum = priceLists[state.price][0];
       const maxNum = priceLists[state.price][1];
 
-      console.log(minNum, maxNum);
       if (state.price === "all" && state.regions === "all") {
         state.sortedProducts = products;
         return;
